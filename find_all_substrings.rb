@@ -2,26 +2,24 @@
 
 # algorithm:
   # - initialize a results array
-  # - use the chars method to break the string down into individual characters
-  # - counter = array.size - 1
-  # - for each character in the array:
-  #             results << character + character[current_index..(counter)]
-  # -           counter - 1
+  # - use the chars method to break the string down into individual characters to iterate over
+  # - using the index of this array iterate through
+  # - within this iteration: iterate again through the current index to the end of the array.
+  # -  add to the results array the letters from the current index to the end of the string/array.
+  # - 
 
 def find_all_substrings(string)
   results = []
   array = string.chars
-  array.each_with_index do |letter, index|
-    counter = array.size - 1
-    (array.size - index).times do
-      results << array[index..counter]
-      counter -= 1
+  array.each_index do |start_index| # iterate over each index in the array
+    start_index.upto(array.length - 1) do |current_iteration| # starting at the current index, add to the results array the input string characters at specific indices. 
+      results << string[start_index..current_iteration] # 0..0, 0..1, 0..2
     end
-    counter = array.size - 1
   end
   p results
 end
 
 
 # Examples:
-p find_all_substrings("abc") == ['a', 'ab', 'abc' 'b', 'bc', 'c']
+p find_all_substrings("abc") == ['a', 'ab', 'abc', 'b', 'bc', 'c']
+
