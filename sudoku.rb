@@ -9,20 +9,67 @@
 # => first check to see if the board is filled out completely
 #     -iterate through each sub_array and see if it include?(0)
 #     -if it does return false, else continue with the validation
-# => ROWS VALID? 
-#     -check to see if each sub_array contains all the integers.
-#     -initialize a variable (hash?) containing all the correct integers as keys and their values set to 0.
-#     -iterate through the sub_arrays and add 1 to the value of the hash for each   integer.
-#     -if all integers have a value of 9 by the end then the rows are validated to true.
+# => ROWS VALID?
+#   -initialize a variable array and assign it a complete row 1-9
+#   -iterate through each sub_array and use sort method to compare it to the valid array variable.
+#   -if they are equal rows are valid.
 # => COLUMNS VALID? 
-#     -initalize another hash, same.
-#     -iterated through each sub_array again and within the iteration we need to check the indices against each other to see if they contain every number...
-
+#     -add all the correct indexes to a current array variable and use sort method again to compare it to the valid array variable.
+#     -if they are equal columns are valid.
 # => BLOCKS VALID?
-#     -
+#     -we need to create the blocks as arrays of 9 integers, sorted, and then compare them against a valid array. Then store the results in a result array like before... ***the hard part is creating the blocks as arrays.***
+# => create blocks as arrays...
+#   - maybe iterate through the board then add certain indices to a hash
+#   - then put in a clause that says if the hash value.size == 9
+#   - increment the name/key of the hash by 3. This will turn key 1 into 4, key 2 into 5, key 3 into 6.... and once it happens again it will jump to the next row of blocks...
+
+
+def board_complete?(b)
+  result = b.select do |sub_array|
+    sub_array.any?(0)
+  end
+  result.empty?
+end
+
+def row_valid?(b)
+  result = []
+  valid_array = [1,2,3,4,5,6,7,8,9]
+  b.each do |sub_array|
+    if sub_array.sort == valid_array
+      result << true
+    else result << false
+    end
+  end
+  result.all?(true)
+end
+
+def column_valid?(b)
+  result = []
+  valid_array = [1,2,3,4,5,6,7,8,9]
+  9.times do |i|
+    current_array = []
+    b.each do |sub_array|
+      current_array << sub_array[i]
+    end
+    result << (current_array.sort == valid_array)
+  end
+  result.all?(true)
+end
+
+def block_valid?(b)
+  result = []
+  current_array = []
+  valid_array = [1,2,3,4,5,6,7,8,9]
+  
+end
 
 def validSolution(board)
-  
+  result = []
+  result << board_complete?(board)
+  result << row_valid?(board)
+  result << column_valid?(board)
+  result << block_valid?(board)
+  result.all?(true)
 end
 
 p validSolution([
