@@ -57,10 +57,29 @@ def column_valid?(b)
 end
 
 def block_valid?(b)
-  result = []
+  result_arr = []
+  result = {one: [], two: [], three: [], four: [], five: [], six: [], seven: [], eight: [], nine: []}
   current_array = []
   valid_array = [1,2,3,4,5,6,7,8,9]
-  
+  b.each do |sub_array|
+    if result[:one].size < 9
+      result[:one] += sub_array[0..2]
+      result[:two] += sub_array[3..5]
+      result[:three] += sub_array[6..8]
+    elsif result[:four].size < 9
+      result[:four] += sub_array[0..2]
+      result[:five] += sub_array[3..5]
+      result[:six] += sub_array[6..8]
+    elsif result[:seven].size < 9
+      result[:seven] += sub_array[0..2]
+      result[:eight] += sub_array[3..5]
+      result[:nine] += sub_array[6..8]
+    end
+  end
+  result.each_pair do |k, v|
+    result_arr << (v.sort == valid_array)
+  end
+  result_arr.all?(true)
 end
 
 def validSolution(board)
