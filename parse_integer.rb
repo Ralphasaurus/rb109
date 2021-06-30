@@ -9,6 +9,7 @@ NUMS = { "zero" => 0, "one" => 1, "two" => 2, "three" => 3, "four" => 4,
 def parse_int(string)
   p string
   result = []
+  small_nums = []
   total = 0
   array = string.split(/\W/)
   array.each do |word|
@@ -16,18 +17,19 @@ def parse_int(string)
       key == word ? result << value : next
     end
   end
-  p result
   result.each_with_index do |value, idx|
-    p total
     unless (value == 100) || (value == 1000)
-    total += value
-    else total *= value
+    small_nums << value
+    small_nums.replace([small_nums.sum])
+    else total += (small_nums.pop * value)
     end
   end
-  p result
-  p total
+  total += (small_nums.sum)
   total
 end
 
 p parse_int("one thousand three hundred thirty-seven") == 1337
 p parse_int("six thousand six hundred and sixty-eight") == 6668
+p parse_int("six hundred sixty-six thousand six hundred sixty-six") == 666666
+
+
