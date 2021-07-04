@@ -16,7 +16,8 @@ NUMS = { "zero" => 0, "one" => 1, "two" => 2, "three" => 3, "four" => 4,
 def parse_int(string)
   p string
   result = []
-  total = []
+  hold = []
+  hold_large = []
   array = string.split(/\W/)
   array.each do |word|
     NUMS.each do |key, value|
@@ -24,8 +25,20 @@ def parse_int(string)
     end
   end
   result.each_with_index do |value, idx|
-    
+    if value < 10 
+      hold << value
+      hold.replace([hold.sum])
+    elsif value < 100
+      hold << value
+      hold.replace([hold.sum])
+    elsif value == 100
+      hold.replace([(hold.sum * value)])
+    elsif value == 1000
+      hold_large << (hold.sum * value)
+      hold.replace([])
+    end
   end
+  hold.sum + hold_large.sum
 end
 p parse_int("one thousand three hundred thirty-seven") == 1337
 p parse_int("six thousand six hundred and sixty-eight") == 6668
