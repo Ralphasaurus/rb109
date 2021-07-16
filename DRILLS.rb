@@ -5,6 +5,8 @@
 
 # PROBLEM:
 # => Find all possible sub_strings in a given string that contain 2 or more letters.
+# => 
+
 
 # STEPS:
 # initialize a result variable and assign it to an empty array
@@ -36,10 +38,13 @@ p find_substrings("halo") == ["ha", "hal", "halo", "al", "alo", "lo"]
 p find_substrings("ab") == ["ab"]
 
 
+# Problem:
+# => When given a string. Return all possible sub_strings that are palindromes.
+# => If there are none, return an empty array. 
 
 # Test cases:
 
-# palindrome_substrings("supercalifragilisticexpialidocious") == ["ili"]
-# palindrome_substrings("abcddcbA") == ["bcddcb", "cddc", "dd"]
-# palindrome_substrings("palindrome") == []
-# palindrome_substrings("") == []
+# p palindrome_substrings("supercalifragilisticexpialidocious") == ["ili"]
+# p palindrome_substrings("abcddcbA") == ["bcddcb", "cddc", "dd"]
+# p palindrome_substrings("palindrome") == []
+# p palindrome_substrings("") == []
