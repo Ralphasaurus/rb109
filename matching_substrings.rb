@@ -1,4 +1,4 @@
-# Give 2 strings. Create a method that returns true or false depending upon if there are matching substrings in each string.
+# Given 2 strings. Create a method that returns true or false depending upon if there are matching substrings in each string.
 
 # steps:
 # => take the each string and break it down two arrays of pairs of character
@@ -24,6 +24,7 @@ def substring_test(string1, string2)
   pair_clone.uniq == pairs ? false : true
 end
 
+# Given 2 strings. Create a method that returns true or false depending upon if there are matching substrings in each string.
 
 p substring_test('Something', 'fun') == false
 p substring_test('Something', 'Home') == true
