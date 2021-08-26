@@ -1,68 +1,51 @@
-
-
 # Given integer array nums, return the third maximum number in this array. If the third maximum does not exist, return the maximum number.
 # You are not allowed to sort the array
 
-=begin
-ALGORITHM:
+# Problem:
+# => input: an array of integers
+# => output: an integer returning the third maximum number in the array.
+# => If it doesn't exist return the max num.
+# => Not allowed to sort the array.
+# => implicit req... only count a number once.
 
-# get main_number
-  - return max number
-
-# iterate through array
-
-# get next highest numbers
-  - remove and save to local variables
-  - evaluate if next integer is less than max but larger than second
-  - evaluate if next integer is less than max and less than second
-
-# compare and return results
-  
-=end
+# Algo:
+# =>
 
 
-p third_max([3,2,1]) == 1
-p third_max([1,2]) == 2
-p third_max([2,2,3,1]) == 1
-p third_max([1, 3, 4, 2, 2, 5, 6]) == 4
+# def third_max(arr)
+#    top_3 = arr.uniq.max(3)
+#    if top_3.size < 3
+#       top_3.first
+#    else top_3.last
+#    end
+# end
+
+# p third_max([3,2,1]) == 1
+# p third_max([1,2]) == 2
+# p third_max([2,2,3,1]) == 1
+# p third_max([1, 3, 4, 2, 2, 5, 6]) == 4
+
+
+
 
 # NEXT
 
 
 # Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s. If there isn't one, return 0 instead.
 
-=begin
-Problem: return the size of the smallest array that sums to the second argument or greater. Else, return 0. 
 
-Algorithm: 
-Return all subarrays. 
-   # 2 nested loops
-   # upto, eachwithindex
-Select which arrays sum to s or greater. 
-Return the shortest array. 
-Else return 0. 
-=end
+# Problem:
+# => input: an array, and an integer
+# => output: an integer representing the min length of a contiguous subarray
+# =>         of which the sum is > s.
+# => rules: if none, return 0.
 
-# def min_sub_length(n, s)
-#   subs = find_subarrays(n)
-#   greater_than = find_greater_than_target(subs, s)
-#   find_shortest(greater_than)
-# end
+# Algorithm: 
+ 
 
-# def minSubLength(n, s)
-#   subarrays = []
-#   n.each_with_index do |num1, index1|
-#     n.each_with_index do |num2, index2|
-#       subarrays << n[index1..index2]
-#     end 
-#   end 
-  
-#   long_arrays = subarrays.select { |sub| sub.sum >= s }
-  
-#   long_arrays.empty? ? 0 : long_arrays.min_by(&:size).size
-# end 
+ 
 
-# p minSubLength([2,3,1,2,4,3], 7) == 2
-# p minSubLength([1, 10, 5, 2, 7], 9) == 1
-# p minSubLength([1, 11, 100, 1, 0, 200, 3, 2, 1, 250], 280) == 4
-# p minSubLength([1, 2, 4], 8) == 0
+p minSubLength([2,3,1,2,4,3], 7) == 2
+p minSubLength([1, 10, 5, 2, 7], 9) == 1
+p minSubLength([1, 11, 100, 1, 0, 200, 3, 2, 1, 250], 280) == 4
+p minSubLength([1, 2, 4], 8) == 0

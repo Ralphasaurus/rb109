@@ -15,12 +15,16 @@
 # => find all substrings
 # - create a helper method for this
 # - initialize an array to hold the substrings
-# - iterate through the input string.chars.each_with_index
-# - inside the block iterate with each_with_index
-# - 
+# - iterate through the input string.chars.each_index
+# - inside the block iterate with times method
+
 # => select the substrings that have exactly 2 'a' and 'e'
+# - from the array of substrings returned from the helper method
+# - call select method and inside the block say:
+# - if string.count('a') == 2 && string.count('e') == 2
 
 # => return the length of the longest
+# - call .max on the return value of the select method from the previous
 
 # => if the string is empty or no 'a' or 'e' -- return -1
 
@@ -32,20 +36,24 @@ def sub_strings(str)
       result << array[idx..(idx + n)].join
     end
   end
-  p result
+  result
 end
 
-p sub_strings("abc") == ['a', 'ab', 'abc', 'b', 'bc', 'c']
+# p sub_strings("abc") == ['a', 'ab', 'abc', 'b', 'bc', 'c']
 
-# def longest_ae(str)
-  
-# end
+def longest_ae(str)
+  subs = sub_strings(str)
+  result = subs.select do |s|
+    s.count('a') == 2 && s.count('e') == 2
+  end
+  result.empty? ? -1 : (result.max_by { |x| x.length }).size
+end
 
 # # Examples and test cases
 
-# p longest_ae("aaee") == 4
-# p longest_ae("babanctekeaa") == 10
-# p longest_ae("xenoglossophobia") == -1
-# p longest_ae("pteromerhanophobia") == 18
-# p longest_ae("johannisberger") == -1
-# p longest_ae("secaundogenituareabb") == 16
+p longest_ae("aaee") == 4
+p longest_ae("babanctekeaa") == 10
+p longest_ae("xenoglossophobia") == -1
+p longest_ae("pteromerhanophobia") == 18
+p longest_ae("johannisberger") == -1
+p longest_ae("secaundogenituareabb") == 16
