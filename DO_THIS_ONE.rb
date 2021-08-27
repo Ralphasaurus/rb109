@@ -41,9 +41,37 @@
 # => rules: if none, return 0.
 
 # Algorithm: 
- 
+# => Find all sub_arrays
+      # => helper method
+      # => iterate through the array
+      # => each_index/ .times methods
+      # => push to new array
+      
+# => Select the sub_arrays where their sum is greater than s
+      # => call select method on the previous return value
+      # => inside block, sub.sum > s
+      
+# => Return the shortest sub_array
+      # => call min_by
 
- 
+def find_sub_arrays(arr)
+  result = []
+  arr.each_index do |outer_idx|
+    (arr.size - outer_idx).times do |inner_idx|
+    result << arr[outer_idx..(inner_idx + outer_idx)]
+    end
+  end
+  result
+end
+
+# p find_sub_arrays([1,2,3]) == [[1], [1, 2], [1, 2, 3], [2], [2, 3], [3]]
+
+def minSubLength(arr, i)
+  subs = find_sub_arrays(arr)
+  correct = subs.select { |array| array.sum >= i }.min_by { |x| x.length }
+  p correct
+  correct == nil ? 0 : correct.size
+end
 
 p minSubLength([2,3,1,2,4,3], 7) == 2
 p minSubLength([1, 10, 5, 2, 7], 9) == 1
