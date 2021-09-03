@@ -67,17 +67,60 @@ Algo:
 - alpha.values.all? do 
 =end
 
-def panagram?(str)
-  alpha = Hash.new(0)
-  ('a'..'z').to_a.each do |letter|
-    alpha[letter] = 0
-  end
-  str.chars.each do |char|
-    char =~ /\w/ ? alpha[char.downcase] += 1 : next
-  end
+# def panagram?(str)
+#   alpha = Hash.new(0)
+#   ('a'..'z').to_a.each do |letter|
+#     alpha[letter] = 0
+#   end
+#   str.chars.each do |char|
+#     char =~ /\w/ ? alpha[char.downcase] += 1 : next
+#   end
   
-  alpha.values.any?(0) ? false : true
+#   alpha.values.any?(0) ? false : true
+# end
+
+# p panagram?("The quick brown fox jumps over the lazy dog.") == true
+# p panagram?("This is not a pangram.") == false
+
+#-------------------------NEW PROBLEM-----------------------------
+
+=begin
+(https://www.codewars.com/kata/57f8ff867a28db569e000c4a/train/ruby)
+6 kyu
+
+Modify the kebabize function so that it converts a camel case string into a kebab case.
+
+kebabize('camelsHaveThreeHumps') // camels-have-three-humps
+kebabize('camelsHave3Humps') // camels-have-humps
+Notes:
+
+the returned string should only contain lowercase letters
+
+Problem:
+    input: a camelCase string
+    output: a string containing only lowercase letters in kebab case
+    
+Algo:
+  - clean the string
+  
+  - iterate through string.chars
+  - if char == char.upcase
+  - gsub(char, -char.downcase)
+  - join and return
+
+=end
+
+def kebabize(str)
+  clean_str = str.chars.select { |char| char =~ /\D/ }.join
+  kebab = clean_str.chars.map do |char|
+    if char == char.upcase
+      char = "-#{char.downcase}"
+    else char
+    end
+  end
+  kebab.join
 end
 
-p panagram?("The quick brown fox jumps over the lazy dog.") == true
-p panagram?("This is not a pangram.") == false
+p kebabize('myCamelCasedString') == 'my-camel-cased-string'
+p kebabize('myCamelHas3Humps') == 'my-camel-has-humps'
+
